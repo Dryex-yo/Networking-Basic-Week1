@@ -1,2 +1,2 @@
-# Networking-Basic-Week1
-Catatan networking week 1
+# Networking Basic – Week 1
+Catatan networking dasar: OSI, TCP/IP, Subnetting, DNS, HTTP, dan Nmap.
