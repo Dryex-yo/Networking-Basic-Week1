@@ -1,0 +1,276 @@
+=========================================================
+            NETWORKING WEEK 2 – LINUX & BASH LAB
+                 Kali Linux Practice Documentation
+=========================================================
+
+Author      : Dryex
+Platform    : Kali Linux (Attacker) & Ubuntu (Target)
+Focus       : Linux Fundamentals, Permission, Process,
+              Networking Command, Bash, SSH Hardening
+
+=========================================================
+SECTION 1 – LINUX FILE SYSTEM
+=========================================================
+
+1.1 Struktur Dasar File System Linux
+-------------------------------------
+Linux menggunakan struktur hirarkis berbentuk pohon
+dimulai dari root (/).
+
+/
+├── bin      → Binary penting sistem
+├── boot     → File boot & kernel
+├── dev      → Device files
+├── etc      → Konfigurasi sistem
+├── home     → Folder user
+├── lib      → Library sistem
+├── var      → Data yang berubah (log, cache)
+├── tmp      → File sementara
+├── usr      → Aplikasi tambahan
+├── proc     → Informasi proses & kernel (virtual)
+├── sys      → Interface kernel
+└── opt      → Aplikasi pihak ketiga
+
+1.2 Direktori Penting
+-------------------------------------
+/etc        → Konfigurasi sistem & aplikasi
+/var/log    → Log sistem
+/home       → Folder user
+/etc/passwd → Daftar user
+/etc/shadow → Password terenkripsi (root only)
+
+Security Insight:
+- /etc/passwd dapat dibaca semua user karena sistem perlu
+  melakukan mapping UID.
+- Password asli disimpan di /etc/shadow.
+
+1.3 Praktik Navigasi
+-------------------------------------
+cd /home/kali
+cd ..
+cd /
+pwd
+ls
+ls -l
+ls -a
+ls -lh
+
+Cari file:
+find /etc -name "passwd"
+sudo find /etc -name "passwd"
+find /etc -name "passwd" 2>/dev/null
+
+Buat folder lab:
+mkdir ~/lab
+cd ~/lab
+
+=========================================================
+SECTION 2 – LINUX PERMISSION
+=========================================================
+
+2.1 Konsep Permission
+-------------------------------------
+r = read (4)
+w = write (2)
+x = execute (1)
+
+Kategori:
+u = owner
+g = group
+o = others
+
+Contoh:
+-rwxr-xr--
+
+Owner  : rwx (7)
+Group  : r-x (5)
+Others : r-- (4)
+
+2.2 chmod
+-------------------------------------
+Symbolic:
+chmod u+x file.txt
+chmod g-w file.txt
+chmod o+r file.txt
+
+Numeric:
+chmod 754 file.txt
+
+2.3 chown
+-------------------------------------
+sudo chown user:group file.txt
+
+2.4 Advanced Permission
+-------------------------------------
+setuid  (s)
+setgid  (s)
+sticky  (t)
+
+Contoh:
+-rwsr-xr-x
+
+2.5 Security Insight
+-------------------------------------
+- chmod 777 berbahaya (semua bisa tulis)
+- Folder butuh "x" agar bisa diakses
+- File tanpa "x" tidak bisa dijalankan
+
+=========================================================
+SECTION 3 – PROCESS MANAGEMENT
+=========================================================
+
+3.1 Melihat Proses
+-------------------------------------
+ps aux
+ps aux | grep nano
+top
+
+Shortcut top:
+q → keluar
+P → sort CPU
+M → sort memory
+
+3.2 Background Process
+-------------------------------------
+gedit &
+jobs
+Ctrl+Z
+bg
+
+3.3 Menghentikan Proses
+-------------------------------------
+kill PID          → SIGTERM (15)
+kill -9 PID       → SIGKILL (paksa)
+
+Security Insight:
+Gunakan kill biasa terlebih dahulu.
+kill -9 digunakan jika proses tidak merespon.
+
+=========================================================
+SECTION 4 – NETWORKING COMMAND
+=========================================================
+
+4.1 Cek Port Terbuka
+-------------------------------------
+sudo netstat -tulnp
+ss -lnt
+sudo lsof -i :22
+
+Parameter netstat:
+t = TCP
+u = UDP
+l = listening
+n = numeric
+p = program
+
+4.2 Test Website
+-------------------------------------
+curl https://example.com
+curl -I https://example.com
+
+4.3 Test Port
+-------------------------------------
+telnet target.com 80
+
+Security Insight:
+Port LISTEN bukan berarti vulnerable,
+tetapi merupakan attack surface.
+
+=========================================================
+SECTION 5 – BASH SCRIPTING
+=========================================================
+
+5.1 Ping Loop Script
+-------------------------------------
+#!/bin/bash
+
+for ip in 192.168.1.{1..10}
+do
+    ping -c 1 -W 1 $ip > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "$ip → Aktif"
+    else
+        echo "$ip → Tidak Aktif"
+    fi
+done
+
+Berikan permission:
+chmod +x ping_loop.sh
+./ping_loop.sh
+
+5.2 Versi Dinamis
+-------------------------------------
+read -p "Masukkan subnet (contoh 192.168.1): " subnet
+for ip in $subnet.{1..10}
+do
+    ping -c 1 $ip
+done
+
+=========================================================
+SECTION 6 – SSH LAB (HARDENING)
+=========================================================
+
+Environment:
+Kali      : 192.168.100.20
+Ubuntu    : 192.168.100.10
+User      : lab-user
+
+6.1 Install SSH Server (Ubuntu)
+-------------------------------------
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+6.2 Login SSH
+-------------------------------------
+ssh lab-user@192.168.100.10
+
+6.3 Generate SSH Key (Kali)
+-------------------------------------
+ssh-keygen
+
+6.4 Copy Public Key
+-------------------------------------
+ssh-copy-id lab-user@192.168.100.10
+
+6.5 Disable Password Login
+-------------------------------------
+Edit:
+sudo nano /etc/ssh/sshd_config
+
+Set:
+PasswordAuthentication no
+PermitRootLogin no
+
+Restart:
+sudo systemctl restart ssh
+
+Test:
+ssh -o PubkeyAuthentication=no lab-user@192.168.100.10
+
+Harus gagal.
+
+Security Insight:
+SSH key lebih aman karena:
+- Tidak bisa brute force seperti password
+- Private key tidak dikirim ke server
+- Password login dinonaktifkan
+
+=========================================================
+FINAL SUMMARY
+=========================================================
+
+Skills Achieved:
+✓ Navigasi file system Linux
+✓ Manajemen permission & ownership
+✓ Kontrol process
+✓ Analisa port & service
+✓ Bash automation
+✓ SSH hardening dengan key authentication
+
+Level:
+Junior Linux Security Lab Builder
+
+=========================================================
+END OF WEEK 2 DOCUMENTATION
+=========================================================
