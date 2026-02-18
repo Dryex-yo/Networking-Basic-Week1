@@ -1,4 +1,10 @@
-# Networking Basic – Week 1
+            NETWORKING WEEK 1 – Networking Basic Fundamental
+                 Kali Linux Practice Documentation
+=========================================================
+
+Author      : Dryex
+Platform    : Kali Linux & Ubuntu Server (VirtualBox Internal Network)
+Focus       : Network Fundamental (OSI Model, TCP/IP, IP Addressing, Subnetting, Port & Protocol, Basic Troubleshooting)
 
 ## OSI Model
 | Layer               | Fungsi Singkat                                                                            | Contoh / Catatan Praktis                                    |
@@ -134,3 +140,4 @@ All People Seem To Need Data Processing
 - Networking fundamental KUAT  
 - OSI, TCP/IP, Subnetting, DNS/HTTP, Nmap sudah dikuasai  
 - Siap lanjut Week 2 → Linux Admin + Command Line + Permission + Process + Service
+
