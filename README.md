@@ -1,122 +1,142 @@
-# Networking Basic Lab
+# Networking, Linux & Security — Practical Lab
 
-Hands-on networking and Linux lab documentation focused on building strong foundational skills for cybersecurity and system administration.
+📘 Dokumentasi praktis lab untuk memahami *networking fundamental*, administrasi Linux, dan pemahaman awal *security/ethical hacking* secara bertahap.
 
-This repository documents my structured and practical learning journey using a controlled virtual lab environment. The focus is on understanding networking concepts, Linux system administration, and secure configuration practices before advancing into security specialization.
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Week 1 - Networking Fundamental](#week-1---networking-fundamental)
-- [Week 2 - Linux and Bash Lab](#week-2---linux-and-bash-lab)
-- [Lab Environment](#lab-environment)
-- [Tools Used](#tools-used)
-- [Next Roadmap](#next-roadmap)
+Repositori ini dirancang sebagai panduan lengkap dari dasar hingga teknik eksploitasi awal.
 
 ---
 
-## Overview
+## 🧠 Overview
 
-This lab project emphasizes:
+Lab mencakup:
 
-- Active experimentation
-- Command execution and validation
-- Configuration troubleshooting
-- Security awareness and hardening practices
-- Structured documentation for reproducibility
-
-The goal is to build strong networking and Linux fundamentals as preparation for advanced cybersecurity topics.
-
----
-
-## Week 1 - Networking Fundamental
-
-📄 Documentation:  
-[Week1-Networking-Fundamental.txt](Week1-Networking-Fundamental.txt)
-
-### Topics Covered
-
-- OSI Model
-- TCP/IP Model
-- IPv4 Addressing
-- Subnetting Basics
-- Common Ports and Protocols
-- Basic Networking Commands (`ping`, `traceroute`, `netstat`, `ss`, `curl`, `telnet`)
-
-### Learning Outcome
-
-- Understand how data travels across networks
-- Configure and verify IP connectivity
-- Perform basic network troubleshooting
-- Identify commonly used ports and services
+✔️ Networking fundamental (OSI, TCP/IP, subnetting, DNS, HTTP)  
+✔️ Administrasi Linux & Bash  
+✔️ Hardening SSH  
+✔️ Security basics — hashing, encryption, firewall  
+✔️ Reconnaissance & OWASP Top 10 pemahaman awal  
+✔️ Nmap & Netcat untuk eksplorasi dan test
 
 ---
 
-## Week 2 - Linux and Bash Lab
+## 📂 Table of Contents
 
-📄 Documentation:  
-[Week2-Linux-Bash-Lab.txt](Week2-Linux-Bash-Lab.txt)
-
-### Topics Covered
-
-- Linux File System Structure
-- File Permissions and Ownership
-- Process Management
-- Networking Commands in Linux
-- Bash Scripting Basics
-- SSH Configuration and Hardening
-
-### Learning Outcome
-
-- Manage Linux systems efficiently
-- Configure and secure SSH service
-- Control processes and permissions
-- Automate basic tasks using Bash scripting
+1. [Week 1 — Networking Fundamental](#week-1--networking-fundamental)  
+2. [Week 2 — Linux & Bash Lab](#week-2--linux--bash-lab)  
+3. [Week 3 — Linux Security, OWASP & Exploitation Basics](#week-3--linux-security-owasp--exploitation-basics)  
+4. [Lab Environment](#lab-environment)  
+5. [Tools Used](#tools-used)  
+6. [Next Roadmap](#next-roadmap)  
+7. [Author](#author)
 
 ---
 
-## Lab Environment
+## 🌐 Week 1 — Networking Fundamental
 
-- **VirtualBox Internal Network**
-- **Kali Linux** (Attacker Machine)
-- **Ubuntu Server** (Target Machine)
-- **Network Range:** 192.168.100.0/24
+**Dokumentasi:** `Week1-Networking-Fundamental.txt`
 
----
+### 🧩 Fokus Materi
 
-## Tools Used
+- OSI & TCP/IP Model  
+- IPv4 Addressing & Subnetting  
+- DNS workflow & HTTP vs HTTPS  
+- Nmap scanning dasar (port, service, versi)  
+- Pengenalan troubleshooting dasar jaringan :contentReference[oaicite:1]{index=1}
 
-### Networking Tools
-- `ip`
-- `ping`
-- `traceroute`
-- `netstat`
-- `ss`
-- `curl`
-- `telnet`
+### 🎯 Hasil Pembelajaran
 
-### Linux Administration
-- `ps`
-- `top`
-- `kill`
-- `chmod`
-- `chown`
-- `systemctl`
-
-### Remote Access
-- `ssh`
+- Memahami cara data berpindah dalam layer jaringan
+- Hitung subnet & host usable
+- Kenali port & service umum
+- Lakukan basic scanning dengan Nmap
 
 ---
 
-## Next Roadmap
+## 🐧 Week 2 — Linux & Bash Lab
 
-- **Week 3 - Network Scanning with Nmap**
-- **Week 4 - Packet Analysis with Wireshark**
-- **Week 5 - Basic Enumeration Techniques**
-- **Week 6 - System Hardening Fundamentals**
+**Dokumentasi:** `Week2-Linux-Bash-Lab.txt`
+
+### 🧩 Fokus Materi
+
+- Struktur file system Linux & direktori penting
+- Permission & ownership (chmod, chown)
+- Process management (`ps`, `top`, `kill`)
+- Networking command (`ss`, `netstat`, `curl`, `telnet`)
+- Bash scripting dasar
+- SSH server setup & hardening (key authentication) :contentReference[oaicite:2]{index=2}
+
+### 🎯 Hasil Pembelajaran
+
+- Navigasi filesystem Linux
+- Kelola permission & proses
+- Automasi dasar dengan Bash
+- Konfigurasi SSH yang lebih aman
 
 ---
 
-**Author:** Dryex
+## 🔐 Week 3 — Linux Security, OWASP & Exploitation Basics
+
+**Dokumentasi:** `Week 3 – Linux Security, OWASP & Network Exploitation Basics.txt`
+
+### 🧩 Fokus Materi
+
+1. **CIA Triad & Sniffing HTTP**  
+   - Bandingkan plaintext HTTP vs terenkripsi HTTPS  
+2. **Hashing & Encryption**  
+   - Perbedaan dan praktik hashing/enkripsi  
+3. **UFW Firewall (Rules & Logging)**  
+   - Konfigurasi block/allow, log aktif  
+4. **OWASP Top 10 (Simulasi Metasploitable)**  
+   - Identifikasi kategori kerentanan umum  
+5. **Advanced Nmap Scan**  
+   - Port/service/version/OS detection  
+6. **Netcat Practice & Reverse Shell**  
+   - Listener, connect, upgrade shell :contentReference[oaicite:3]{index=3}
+
+### 🎯 Hasil Pembelajaran
+
+- Pahami celah *confidentiality* HTTP
+- Maknai hashing vs encryption
+- Implementasi firewall dasar
+- Simulasi rekonstruksi OWASP Top 10
+- Penggunaan Nmap lanjutan
+- Praktik Netcat connect & reverse shell
+
+---
+
+## 🧪 Lab Environment
+
+Lab dijalankan dengan jaringan internal VirtualBox:
+
+- **Kali Linux** — Attacker  
+- **Ubuntu Server** — Target  
+- **Metasploitable** — Target rentan (Week 3)  
+- Network: `192.168.100.0/24` :contentReference[oaicite:4]{index=4}
+
+---
+
+## 🛠️ Tools Used
+
+### 🔹 Networking / Recon
+
+- `nmap`, `ss`, `netstat`, `tcpdump`  
+- `curl`, `telnet`, DNS tools
+
+### 🔹 Linux Administration
+
+- `chmod`, `chown`, `ps`, `top`, `kill`  
+- Bash scripting
+
+### 🔹 Security / Exploitation
+
+- UFW (firewall)
+- Netcat (`nc`)
+- OWASP awareness
+
+---
+
+## 👤 Author
+
+**Dryex** — Dokumentasi lab praktis membangun pondasi kuat cybersecurity.
+
+---
